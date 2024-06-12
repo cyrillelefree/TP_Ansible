@@ -1,0 +1,45 @@
+---
+- hosts: node01
+  tasks:
+  gather_facts: no
+  become: true
+  tasks:
+  - name: install apache and php
+    yum:
+      name:
+        - httpd
+        - php
+      state: present
+
+  - name: ensure DocumentRoot path exist
+    file:
+      path: /var/www/html/myroot
+      state: directory
+      mode: '0755'
+
+  - name: change default document root
+    replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: 'DocumentRoot "/var/www/html"'
+      replace: 'DocumentRoot "/var/www/html/myroot"'
+
+  - name: config default file page
+    template:
+      src: templates/phpinfo.php.j2
+      dest: /var/www/html/myroot/phpinfo.php
+      group: apache
+      owner: apache
+
+  - name: start and enable service
+    service:
+      name: httpd
+      enabled: yes
+      state: started
+
+  - name: allow http port
+    firewalld:
+      port: 80/tcp
+      zone: public
+      permanent: true
+      state: enabled
+

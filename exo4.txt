@@ -1,4 +1,6 @@
-reate a playbook facts.yml under ~/playbooks directory on Ansible controller. In this playbook using blockinfile module create a file facts.txt under /root on node02 host and add below given block in it. You will need to enable facts gathering for this task.
+create a playbook facts.yml under ~/playbooks directory on Ansible controller. 
+In this playbook using blockinfile module create a file facts.txt under /root on node02 host and add below given block in it. 
+You will need to enable facts gathering for this task.
 
 #######################################################################################################
 This is Ansible managed node `<hostname-of-host> `
