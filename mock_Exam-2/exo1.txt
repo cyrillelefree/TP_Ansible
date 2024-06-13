@@ -1,0 +1,6 @@
+A cli tool called awscli has been installed using pip3, and its out of date on remote servers. 
+Ensure that it is updated to the latest versiion.
+
+
+Write a playbook /home/thor/playbooks/update_version.yml to update aws cli to the latest version. 
+Use inventory /home/thor/playbooks/inventory
