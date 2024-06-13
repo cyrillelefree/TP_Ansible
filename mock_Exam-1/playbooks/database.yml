@@ -5,24 +5,39 @@
   tasks:
   - name: start nginx and mariadb services
     service:
-    name:
+      name: "{{ item }}"
+      state: started
+    loop:
       - nginx
       - mariadb
-    state: started
 
   - name: deleting of files
     file:
-      path: /usr/share/nginx/html/
+      path: /usr/share/nginx/html/*
       state: absent
 
   - name: download zip archive
     get_url:
       url: https://github.com/indercodes/ansible-1100-mock-nginx/raw/master/index.php.zip
       dest: /tmp/index.php.zip
-  
+
   - name: unarchive zip file
     unarchive:
       src: /tmp/index.php.zip
       dest: /usr/share/nginx/html/
+      remote_src: yes
 
   - name: modify index.php file
+    replace:
+      path: /usr/share/nginx/html/index.php
+      regexp: "{{ item.regexp }}"
+      replace: "{{ item.replace }}"
+    loop:
+      - { regexp: '$database = "database;"', replace: '$database = "mydb";' }
+      - { regexp: '$username = "user";', replace: '$username = "myuser";' }
+      - { regexp: '$password = "password";', replace: '$password = "mypassword";' }
+
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
