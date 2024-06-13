@@ -1,0 +1,28 @@
+---
+- hosts: node02
+  gather_facts: no
+  vars:
+  tasks:
+  - name: start nginx and mariadb services
+    service:
+    name:
+      - nginx
+      - mariadb
+    state: started
+
+  - name: deleting of files
+    file:
+      path: /usr/share/nginx/html/
+      state: absent
+
+  - name: download zip archive
+    get_url:
+      url: https://github.com/indercodes/ansible-1100-mock-nginx/raw/master/index.php.zip
+      dest: /tmp/index.php.zip
+  
+  - name: unarchive zip file
+    unarchive:
+      src: /tmp/index.php.zip
+      dest: /usr/share/nginx/html/
+
+  - name: modify index.php file
