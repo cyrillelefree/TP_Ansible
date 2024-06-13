@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  vars:
+  tasks:
+  - name: update awscli version
+    pip:
+      name: awscli
+      executable: pip3
+      state: "latest"

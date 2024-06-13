@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  vars:
+  tasks:
+  - name: give ssh access
+    authorized_key:
+      user: "root"
+      key: "{{ lookup('file', '/home/thor/playbooks/john_doe.pub') }}"
+      state: present
