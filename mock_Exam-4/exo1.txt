@@ -1,0 +1,8 @@
+Perform the following tasks:
+
+1. Install ansible using the package manager if not installed.
+2. Generate your ssh key to path ~/.ssh/id_rsa
+3. Push the public key: (~/.ssh/id_rsa.pub) on the remote servers listed in: ~/playbooks/inventory
+4. Test your setup is working with: ansible all -m ping -i /home/thor/playbooks/inventory
+
+Use password: Passw0rd to ssh onto the remote hosts. Remember the remote hosts are managed by the root user.

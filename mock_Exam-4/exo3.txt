@@ -1,0 +1,23 @@
+Write a playbook /home/thor/playbooks/install_from_source.yml to install a tool: mosh from the 
+source:https://github.com/mobile-shell/mosh on all servers (Server details are specified inside the 
+inventory file named /home/thor/playbooks/inventory).
+
+A normal install from source flow is:
+
+git clone https://github.com/mobile-shell/mosh
+cd mosh
+./autogen.sh
+scl enable devtoolset-7 -- ./configure
+scl enable devtoolset-7 -- make && make install
+
+To compile mosh from source, you need these dependencies:
+
+git
+make
+autoconf
+automake
+protobuf-devel
+libutempter-devel
+ncurses-devel
+openssl-devel
+devtoolset-7-gcc*
