@@ -1,0 +1,20 @@
+---
+- hosts: all
+  gather_facts: yes
+  vars:
+  tasks:
+  - name: install yum-cron package
+    package:
+      name: yum-cron
+      state: present
+
+  - name: confiure the yum-cron.conf file
+    replace:
+      path: /etc/yum/yum-cron.conf
+      regexp: "update_cmd = default"
+      replace: "update_cmd = security"
+  
+  - name: restart service
+    service:
+      name: yum-cron
+      state: restarted
