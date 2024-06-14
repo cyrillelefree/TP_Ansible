@@ -1,0 +1,3 @@
+Using an Ansible playbook install firewalld on node00 node, start its service as well. 
+Name the playbook as firewall.yml and keep it under ~/playbooksand also white list 
+node01 host's IP address 172.20.1.101 on node00

@@ -1,0 +1,6 @@
+We have two nodes that are managed by Ansible. There is an inventory file ~/playbooks/inventory 
+on Ansible controller which has all these two nodes added. Create a playbook ~/playbooks/blocks.yml 
+on Ansible controller to install httpd web server and start its service.
+
+
+Create the playbook using blocks to logically group the tasks (installation and service start).
