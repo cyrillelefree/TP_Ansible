@@ -1,0 +1,18 @@
+---
+- hosts: node00
+  gather_facts: no
+  vars:
+  tasks:
+  - name: install firewalld
+    package:
+      name: firewalld
+      state: present
+  - name: start firewalld service
+    service:
+      name: firewalld
+      state: started
+  - name: whitelist node01
+    firewalld:
+      source: 172.20.1.101
+      zone: internal
+      state: enabled
