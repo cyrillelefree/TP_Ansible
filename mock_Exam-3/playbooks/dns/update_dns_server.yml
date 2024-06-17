@@ -1,1 +1,10 @@
 # update_dns_server.yml
+---
+- hosts: storage_nodes
+  gather_facts: no
+  vars:
+  tasks:
+  - name: generate new resolv.conf file
+    template:
+      src: templates/resolv.conf.j2
+      dest: /tmp/resolv.conf

@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars:
+  gather_facts: no
+  tasks:
+  - name: install and start httpd web server
+    block:
+      - name: install httpd service
+        package:
+          name: httpd
+          state: present
+      - name: start httpd service
+        service:
+          name: httpd
+          state: started
